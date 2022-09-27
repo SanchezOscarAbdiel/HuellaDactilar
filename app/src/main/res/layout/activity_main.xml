@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#042743">
@@ -29,6 +30,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tvbt"
+            android:layout_width="328dp"
+            android:layout_height="78dp"
+            android:fontFamily="serif"
+            android:text="ACERCA LA TARJETA AL SCANNER"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_anchorGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.736" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
@@ -36,7 +55,7 @@
             android:layout_marginTop="36dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
             app:layout_constraintVertical_bias="0.0"
@@ -44,11 +63,32 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="337dp"
-            android:layout_height="598dp"
-            app:srcCompat="@drawable/pngwing_com"
-            tools:layout_editor_absoluteX="-27dp"
-            tools:layout_editor_absoluteY="194dp" />
+            android:layout_width="126dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="580dp"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.36"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+            app:srcCompat="@drawable/pngwing_com" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="240dp"
+        android:layout_height="206dp"
+        android:src="@drawable/huella"
+        app:layout_anchor="@+id/constraintLayout"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

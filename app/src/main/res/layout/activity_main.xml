@@ -49,7 +49,7 @@
             app:layout_constraintVertical_bias="0.736" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ivCuadroNegro"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="36dp"
@@ -62,7 +62,7 @@
             app:srcCompat="@drawable/black_square_png_images_hd" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/ivLineaNegra"
             android:layout_width="126dp"
             android:layout_height="49dp"
             android:layout_marginStart="90dp"
@@ -73,22 +73,45 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.36"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/ivCuadroNegro"
+            app:layout_constraintStart_toStartOf="@+id/ivCuadroNegro"
             app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
             app:srcCompat="@drawable/pngwing_com" />
 
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/GifNFT"
+            android:layout_width="240dp"
+            android:layout_height="206dp"
+            android:src="@drawable/huella"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ivCuadroNegro"
+            app:layout_constraintStart_toStartOf="@+id/ivCuadroNegro"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivVerdeAprobado"
+            android:layout_width="200dp"
+            android:layout_height="429dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:srcCompat="@drawable/cuadroverde" />
+
+        <Button
+            android:id="@+id/Bverde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aprobado"
+            app:layout_constraintBottom_toBottomOf="@+id/ivCuadroNegro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivVerdeAprobado"
+            app:layout_constraintVertical_bias="0.456" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_width="240dp"
-        android:layout_height="206dp"
-        android:src="@drawable/huella"
-        app:layout_anchor="@+id/constraintLayout"
-        app:layout_anchorGravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

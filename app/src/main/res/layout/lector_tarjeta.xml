@@ -4,20 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".LectorTarjeta">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#042743">
+        android:background="#FFFFF"> <!--- #042743 -->
+
+        <ImageView
+            android:id="@+id/ivCabecera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTitulo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bordenegro" />
 
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="40dp"
             android:fontFamily="serif"
             android:text="VERIFICACIÓN EN 2 PASOS"
@@ -26,7 +36,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +47,7 @@
             android:fontFamily="serif"
             android:text="ACERCA LA TARJETA AL SCANNER"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_anchorGravity="center"
@@ -104,6 +114,7 @@
             android:id="@+id/Bverde"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="BotonAprobado"
             android:text="Aprobado"
             app:layout_constraintBottom_toBottomOf="@+id/ivCuadroNegro"
             app:layout_constraintEnd_toEndOf="parent"

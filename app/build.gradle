@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android-extensions'
+
 }
 
 android {
@@ -44,5 +44,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 
-    implementation 'com.github.jose-jhr:blueJhrLibrary:0.1.0'
+
 }

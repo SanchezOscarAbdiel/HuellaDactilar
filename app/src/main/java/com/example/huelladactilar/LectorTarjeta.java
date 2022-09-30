@@ -1,9 +1,12 @@
 package com.example.huelladactilar;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,14 +25,18 @@ import java.util.UUID;
 
 public class LectorTarjeta extends AppCompatActivity {
 
+
     int REQUEST_ENABLE_BT;
     float Transparencia = 0.75F;
     static final UUID mUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    int sonido;
 
+    SoundPool sp;
     ImageView CuadroVerde;
     Button BAprobado;
 
     //==============ON CREATE==============//
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,27 +45,18 @@ public class LectorTarjeta extends AppCompatActivity {
         //INICIALIZA VISUALES
             CuadroVerde = (ImageView) findViewById(R.id.ivVerdeAprobado);
             BAprobado = (Button) findViewById(R.id.Bverde);
+            sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
 
         //LLAMADA A METODOS
-            PrendeBT();
-
-    }
-
-    //==============METODOS==============//
-    public void PrendeBT() {
         //INSTANCIA EL BLUETOOTH
+        System.out.println("btAdapter.getBondedDevices()");
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
         System.out.println(btAdapter.getBondedDevices()); //Encuentra las direcciones mac de los dispositivos
-        if (btAdapter == null) { /* Device doesn't support Bluetooth*/ }
 
-        //PREGUNTA DE BT ENCENDIDO
-        if (!btAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT); //PARECE QUE DA ERROR, PERO NO
-        }
-
-        BluetoothDevice hc05 = btAdapter.getRemoteDevice("DIRECCION MAC");
+        BluetoothDevice hc05 = btAdapter.getRemoteDevice("98:D3:31:F5:B1:8E");
+        System.out.println("hc05.getName()");
         System.out.println(hc05.getName());
+
 
         //SOCKET PARA LA COMUNICACION
         BluetoothSocket btSocket = null;
@@ -70,6 +68,7 @@ public class LectorTarjeta extends AppCompatActivity {
                 System.out.println(btSocket);
                 //Conexion a la placa "Servidor"
                 btSocket.connect();
+                System.out.println("btSocket.isConnected()");
                 System.out.println(btSocket.isConnected());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -78,7 +77,10 @@ public class LectorTarjeta extends AppCompatActivity {
             cont++;
         }while (!btSocket.isConnected() && cont <3);
 
-        //==============MANEJO DE DATOS
+        //EJECUCION DE SONIDOS
+        //sonido = sp.load(this,R.raw.btconectado, 1);
+       // sp.play(sonido, 1, 1, 1, 0,0);
+
         try { //Enviar datos
             OutputStream outputStream = btSocket.getOutputStream();
             outputStream.write(48);
@@ -90,23 +92,26 @@ public class LectorTarjeta extends AppCompatActivity {
             InputStream inputStream = btSocket.getInputStream();
             inputStream.skip(inputStream.available());
 
-            for (int i = 0; i < 26; i++){
+           // for (int i = 0; i < 5; i++){
                 byte b = (byte) inputStream.read();
                 System.out.println((char) b);
-            }
+          //  }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        //Cerrar conexion
+        try {
+            btSocket.close();
+            System.out.println(btSocket.isConnected());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
 
-            //Cerrar conexion
-            try {
-                btSocket.close();
-                System.out.println(btSocket.isConnected());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    //==============METODOS==============//
+    public void PrendeBT() {
 
 
 
@@ -115,6 +120,9 @@ public class LectorTarjeta extends AppCompatActivity {
 
 //------------------------------------
     public void BotonAprobado(View view){
+        PrendeBT();
+
+        /*
         Animation animFadeIn = AnimationUtils.loadAnimation(this, R.anim.fadein); //CARGA EL TIPO DE ANIMACION
         //PROCESO DE ANIMACION
         animFadeIn.reset();
@@ -123,6 +131,7 @@ public class LectorTarjeta extends AppCompatActivity {
         //AL TERMINAR LA ANIMACION, SE HACE VISIBLE EL CUADRO VERDE
         CuadroVerde.setAlpha(Transparencia);
         CuadroVerde.setVisibility(View.VISIBLE);
+         */
     }
 
 }
